@@ -11,7 +11,6 @@ const Pusher = require("pusher");
 const userRouter = require('./routes/userRoutes');
 const messageRouter = require('./routes/messageRoutes');
 const roomRouter = require('./routes/roomRoutes');
-const subscriptionsRouter = require('./routes/subscriptionRoutes');
 const mongoose = require("mongoose");
 const path = require('path');
 const AppError = require('./utils/appError');
