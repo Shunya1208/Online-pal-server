@@ -1,7 +1,5 @@
 const Room = require('./../models/roomModel');
-const catchAsync = require('./../utils/catchAsync');
 const factory = require('./handlerFactory');
-const AppError = require('./../utils/appError');
 
 
 exports.createRoom = async (req, res, next) => {

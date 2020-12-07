@@ -13,11 +13,18 @@ module.exports = class Email {
       if (process.env.NODE_ENV === 'production') {
         // Sendgrid
         return nodemailer.createTransport({
-          service: 'SendGrid',
+          host: process.env.GMAIL_HOST,
+          port: process.env.GMAIL_PORT,
+          secure: true, // SSL
           auth: {
-            user: process.env.SENDGRID_USERNAME,
-            pass: process.env.SENDGRID_PASSWORD
+              user: process.env.GMAIL_USERNAME,
+              pass: process.env.GMAIL_PASSWORD
           }
+          // service: 'SendGrid',
+          // auth: {
+          //   user: process.env.SENDGRID_USERNAME,
+          //   pass: process.env.SENDGRID_PASSWORD
+          // }
         });
       }
   
@@ -35,7 +42,7 @@ module.exports = class Email {
     async send(subject) {
      
 
-      // 2) Define email options
+      // Define email options
       const mailOptions = {
         from: this.from,
         to: this.to,
@@ -43,7 +50,7 @@ module.exports = class Email {
         html: this.html
       };
   
-      // 3) Create a transport and send email
+      // Create a transport and send email
       await this.newTransport().sendMail(mailOptions);
     }
   

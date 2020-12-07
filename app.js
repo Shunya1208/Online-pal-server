@@ -23,6 +23,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const app = express();
 app.enable('trust proxy');
 
+// Pusher configuration
 const pusher = new Pusher({
   appId: "1108524",
   key: "b819afcc49b3b99809a0",
@@ -55,8 +56,6 @@ db.once("open", () => {
                     _id: messageDetails._id
                 }
             )
-        } else {
-            console.log("Error triggering Pusher")
         }
     })
 
@@ -69,9 +68,7 @@ db.once("open", () => {
                     createdAt: roomDetails.createdAt,
                 }
             )
-        } else {
-            console.log("Error triggering Pusher")
-        }
+        } 
     })
 })
 
@@ -118,7 +115,7 @@ app.use(compression());
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/rooms', roomRouter);
 app.use('/api/v1/messages', messageRouter);
-app.use('/api/v1/subscriptions', subscriptionsRouter);
+// app.use('/api/v1/subscriptions', subscriptionsRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

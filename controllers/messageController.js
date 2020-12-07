@@ -1,7 +1,5 @@
 const Message = require('./../models/messageModel');
-const catchAsync = require('./../utils/catchAsync');
 const factory = require('./handlerFactory');
-const AppError = require('./../utils/appError');
 
 
 exports.createMessage = factory.createOne(Message);

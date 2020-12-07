@@ -99,7 +99,6 @@ exports.addBookmark = catchAsync(async (req, res, next) => {
 
 exports.removeBookmark = catchAsync(async (req, res, next) => {
     const user = await User.findById(req.params.id);
-    console.log(req)
     user.bookmark.splice(user.bookmark.indexOf(req.body.id),1);
 
     await user.save();
